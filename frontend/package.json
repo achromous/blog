@@ -1,0 +1,48 @@
+{
+  "name": "achromous-blog",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "tsc && concurrently \"lite-server\" \"nodemon -L --exec npm run compile\"",
+    "backup-start": "lite-server && nodemon -L --exec npm run compile",
+    "not-real-start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "compile": "tsc",
+    "lite": "lite-server",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/angular/angular.io/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "@angular/common": "~2.1.1",
+    "@angular/compiler": "~2.1.1",
+    "@angular/core": "~2.1.1",
+    "@angular/forms": "~2.1.1",
+    "@angular/http": "~2.1.1",
+    "@angular/platform-browser": "~2.1.1",
+    "@angular/platform-browser-dynamic": "~2.1.1",
+    "@angular/router": "~3.1.1",
+    "@angular/upgrade": "~2.1.1",
+    "angular-in-memory-web-api": "~0.1.13",
+    "core-js": "^2.4.1",
+    "front-matter": "^2.1.1",
+    "milligram": "^1.2.0",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "showdown": "^1.5.0",
+    "systemjs": "0.19.39",
+    "zone.js": "^0.6.25"
+  },
+  "devDependencies": {
+    "@types/core-js": "^0.9.34",
+    "@types/node": "^6.0.45",
+    "@types/showdown": "^1.4.31",
+    "concurrently": "^3.0.0",
+    "lite-server": "^2.2.2",
+    "nodemon": "^1.9.1",
+    "typescript": "^2.0.3"
+  }
+}

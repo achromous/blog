@@ -1,0 +1,7 @@
+{
+  "name": "achromous-blog-api",
+  "dependencies": {
+    "express": "^4.14.0",
+    "gray-matter": "^2.1.0"
+  }
+}

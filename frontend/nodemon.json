@@ -1,0 +1,10 @@
+{
+  "watch": [
+    "/usr/src"
+  ],
+  "ext": ".ts",
+  "ignore": [
+    ".js"
+  ],
+  "verbose": true
+}

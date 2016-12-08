@@ -1,0 +1,13 @@
+a {
+    font-weight: bold;
+    margin-left: 3rem;
+    text-decoration: none;
+}
+
+a:visited {
+    color: grey;
+}
+
+body {
+    color: #212121
+}

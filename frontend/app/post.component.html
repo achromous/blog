@@ -1,0 +1,13 @@
+<div class="row">
+    <hr>
+    <div class="column column-20 blog_details">
+        {{post.date}}
+        <hr> tags:
+        <span *ngFor="let tag of post.tags">
+            {{tag}}
+        </span>
+        <hr>
+    </div>
+    <div class="column column-60 blog_post" [innerHTML]="post.formatedContent">
+    </div>
+</div>
