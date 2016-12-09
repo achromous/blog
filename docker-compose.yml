@@ -1,0 +1,19 @@
+blog:
+  build: frontend/.
+  command: bash -c "npm start"
+  environment:
+    NODE_ENV: development
+  ports:
+    - '3000:3000'
+  volumes:
+    - frontend/.:/usr/src
+    - /usr/src/node_modules
+api:
+  build: backend/.
+  command: node api.js
+  environment:
+    NODE_ENV: development
+  ports:
+    - '1234:1234'
+  volumes:
+    - backend/.:/usr/src
