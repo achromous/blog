@@ -1,5 +1,6 @@
 
-frontend/**/*.js
+frontend/app/*.js
 frontend/**/*.map
 backend/node_modules
 frontend/node_modules
+achromous_blog.pem
