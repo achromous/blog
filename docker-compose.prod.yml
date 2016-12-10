@@ -1,0 +1,17 @@
+blog:
+  build: frontend/.
+  dockerfile: Dockerfile
+  command: nginx -g 'daemon off;'
+  environment:
+    NODE_ENV: production
+  ports:
+    - '80:80'
+  tty: true
+
+api:
+  build: backend/.
+  command: node api.js
+  environment:
+    NODE_ENV: production
+  ports:
+    - '1234:1234'
