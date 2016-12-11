@@ -9,9 +9,11 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PostService {
-    private postsURL = 'http://192.168.99.100:1234';
+
+    private postsURL = '';
 
     constructor(private http: Http) {
+        this.postsURL = 'http://' + window.location.hostname + ':1234'
     }
 
     getPosts(): Promise<Post[]> {
