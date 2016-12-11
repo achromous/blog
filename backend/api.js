@@ -1,13 +1,17 @@
 var express = require('express');
 var matter = require('gray-matter');
 var fs = require('fs');
+var cors = require('cors');
 var app = express();
 
 var post = [];
 
-app.get('/', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+app.use(cors())
+
+app.get('/', function(req, res, next) {
+    //res.header("Access-Control-Allow-Origin", "*");
+    //res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log('got a request');
     res.send(post);
 })

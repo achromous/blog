@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PostService {
-    private postsURL = 'http://localhost:1234';
+    private postsURL = 'http://192.168.99.100:1234';
 
     constructor(private http: Http) {
     }
@@ -31,7 +31,8 @@ export class PostService {
     }
 
     private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
+        console.log('postsURL:' + this.postsURL)
+        console.error('An error occurred !!!!!!!', error);
+        return Promise.reject(error.message + error.reason || error);
     }
 }

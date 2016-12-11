@@ -51,3 +51,32 @@ the images on my instance. However I'm now running into the same/very similar
 issue to what I was seeing when I was trying to run this on windows, so looks
 like I'm going to have to figure that out.
 `Error: (SystemJS) XHR error (403 Forbidden) loading http://ec2-54-89-220-64.compute-1.amazonaws.com/app`
+I figured out this was caused by a really stupid error - I had setup my gitignore
+to ignore all javascript files so that it would not check in the compiled
+typescript, however I incorrectly wrote the rule so it occluded this file
+as well. It worked on my linux box because the file was already there. Once
+I looked at iptables and saw that they were exactly the same on the amazon
+instance and on the local machine I happened to notice the file itself was
+actually missing. This is EXACTLY the kind of issue a dev workflow with docker
+is supposed to help fix so serves me right for doing some work on bare metal.
+
+Next minor issue I ran into was I never compiled the typescript, but that was
+easily fixed by calling tsc by hand. I am going to need a proper deploy
+at some point soonish but I don't want to get webpack working yet.
+
+The final issue was that the blog container's request to the api container
+wasn't working. For whatever reason this worked on my local machine but it
+wasn't working on the amazon instance, despite both being ubuntu. I have added
+the containers to the same network, and now I can curl from the blog to the api
+and get results, but for whatever reason the service in ng2 is still failing.
+Turned out to be a CORS issue (yay). I was manually setting some things in
+express for CORS so I installed some middleware to do it instead and that
+worked. I am finishing this post and then will manually deploy on AWS.
+
+And voila - my terrible blog is live. Manually doing anything on prod is really
+gross, but then again - this isn't exactly that important of an application. I
+WILL have a completely automated deployment process at some point though. I also
+would like to address some testing - right now there is none and that will blow
+up in my face at some point soon I am sure. I prefer working with TDD but I
+don't know how to do that with this tech yet. (I could do it on the API but as
+the API is presently pretty crappy I'd rather do that when I rewrite it.)
