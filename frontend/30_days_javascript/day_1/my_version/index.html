@@ -1,0 +1,184 @@
+d
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Gastown Steam Clock Simon</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="wrapper">
+
+            <div class="keys">
+                <div data-key="65" class="key key1">
+                    <span>
+                    A
+                  </span>
+                </div>
+                <div data-key="83" class="key key2">
+                    <span>
+                    S
+                  </span>
+                </div>
+                <div data-key="68" class="key key3">
+                    <span>
+                    D
+                  </span>
+                </div>
+                <div data-key="70" class="key key4">
+                    <span>
+                    F
+                  </span>
+                </div>
+            </div>
+            <div id="lost">You lost!</div>
+            <button name="button" id="start">start playing</button>
+        </div>
+
+        <audio data-key="65" src="sounds/steamclock-3rdnote.mp3"></audio>
+        <audio data-key="83" src="sounds/steamclock-1stnote.mp3"></audio>
+        <audio data-key="68" src="sounds/steamclock-2ndnote.mp3"></audio>
+        <audio data-key="70" src="sounds/steamclock-5thnote.mp3"></audio>
+        <audio data-key="71" src="sounds/steamclock-whistle.mp3"></audio>
+
+        <script>
+            var sequence = [];
+            var keys_enabled = true;
+            var current_note = 0;
+            var playing_game = false;
+
+            function getRandomIntInclusive(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            function addToSequence(count) {
+                for (i = 0; i < count; i++) {
+                    to_add = getRandomIntInclusive(1, 4);
+                    switch (to_add) {
+                        case 1:
+                            sequence.push(65);
+                            break;
+                        case 2:
+                            sequence.push(83);
+                            break;
+                        case 3:
+                            sequence.push(68);
+                            break;
+                        case 4:
+                            sequence.push(70);
+                    }
+                }
+            }
+
+            function playNote(to_play) {
+                audio = document.querySelector(`audio[data-key="${to_play}"]`);
+                key = document.querySelector(`div[data-key="${to_play}"]`);
+                audio.currentTime = 0;
+                audio.play();
+                key.classList.add('playing');
+            }
+
+            function playSequence(playing_sequence) {
+                var note = playing_sequence.shift()
+                if (note) {
+                    playNote(note);
+                    setTimeout(playSequence.bind(null, playing_sequence), 1000);
+                }
+            }
+
+            function playsound(e) {
+                var valid_keys = [65, 83, 68, 70];
+                var to_play = e.keyCode;
+                if (valid_keys.indexOf(to_play) > -1 && keys_enabled) {
+                    playNote(to_play);
+                }
+            }
+
+            function removeTransition(e) {
+                if (e.propertyName !== 'transform') {
+                    return;
+                }
+                this.classList.remove('playing');
+            }
+
+            function lost(e) {
+                if (playing_game) {
+                    audio = document.querySelector('audio[data-key="71"]');
+                    audio.play();
+                    lost = document.querySelector('#lost');
+                    lost.style.display = "block";
+                    setTimeout(function() {
+                        lost.style.display = "none";
+                    }, 2000);
+                    sequence = [];
+                    playing_game = false;
+                    current_note = 0;
+                }
+            }
+
+            function start_round() {
+                playing_game = true;
+                keys_enabled = false;
+                setTimeout(computers_turn, 1000);
+                keys_enabled = true;
+            }
+
+            function computers_turn() {
+                keys_enabled = false;
+                addToSequence(1);
+                playSequence(sequence.slice());
+                keys_enabled = true;
+            }
+
+            function checksimon(e) {
+                var correct_note = is_correct_key(e.keyCode);
+                if (correct_note) {
+                    current_note += 1;
+                    if (current_note == sequence.length) {
+                        current_note = 0;
+                        setTimeout(computers_turn, 2000);
+                    }
+                } else {
+                    lost();
+                }
+            }
+
+            function is_correct_key(key_pressed) {
+                if (key_pressed == sequence[current_note]) {
+                    key_pressed = null;
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            const keys = document.querySelectorAll('.key');
+            keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+            window.addEventListener('keydown', playsound);
+            window.addEventListener('keydown', checksimon);
+            var button = document.querySelectorAll('#start');
+            button[0].addEventListener('click', start_round);
+        </script>
+
+
+    </body>
+
+</html>
+</script>
+
+
+</body>
+
+</html>
+
+</html>
+</script>
+
+
+</body>
+
+</html>
