@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Virtual Steam Clock</title>
+    </head>
+
+    <body>
+
+        <div class="clock">
+            <div class="clock-face">
+                <div class="hand hour-hand"></div>
+                <div class="hand min-hand"></div>
+                <div class="numeral numeral_1">I</div>
+                <div class="numeral numeral_2">II</div>
+                <div class="numeral numeral_3">III</div>
+                <div class="numeral numeral_4">IV</div>
+                <div class="numeral numeral_5">V</div>
+                <div class="numeral numeral_6">VI</div>
+                <div class="numeral numeral_7">VII</div>
+                <div class="numeral numeral_8">VIII</div>
+                <div class="numeral numeral_9">IX</div>
+                <div class="numeral numeral_10">X</div>
+                <div class="numeral numeral_11">XI</div>
+                <div class="numeral numeral_12">XII</div>
+            </div>
+        </div>
+
+        <audio data-key="1" src="sounds/steamclock-3rdnote.mp3"></audio>
+        <audio data-key="2" src="sounds/steamclock-1stnote.mp3"></audio>
+        <audio data-key="3" src="sounds/steamclock-2ndnote.mp3"></audio>
+        <audio data-key="4" src="sounds/steamclock-5thnote.mp3"></audio>
+        <audio data-key="5" src="sounds/steamclock-whistle.mp3"></audio>
+
+        <style>
+            html {
+                background: thistle;
+                background-size: cover;
+                font-family: 'helvetica neue';
+                text-align: center;
+                font-size: 10px;
+            }
+
+            body {
+                font-size: 2rem;
+                display: flex;
+                flex: 1;
+                min-height: 100vh;
+                align-items: center;
+            }
+
+            .clock {
+                width: 30rem;
+                height: 30rem;
+                border: 20px solid #B5A642;
+                border-radius: 50%;
+                margin: 50px auto;
+                position: relative;
+                padding: 2rem;
+            }
+
+            .clock-face {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transform: translateY(-3px);
+                /* account for the height of the clock hands */
+            }
+
+            .hand {
+                width: 50%;
+                height: 6px;
+                background: black;
+                position: absolute;
+                top: 50%;
+                transform-origin: 100%;
+                transform: rotate(90deg);
+                transition: all 0.05s;
+                transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+            }
+
+            .numeral {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+            .numeral_1 {
+                transform: rotate(30deg);
+                position: absolute;
+                right: 7rem;
+                top: 2rem;
+            }
+
+            .numeral_2 {
+                transform: rotate(60deg);
+                position: absolute;
+                right: 2rem;
+                top: 7rem;
+            }
+
+            .numeral_3 {
+                transform: rotate(90deg);
+                position: absolute;
+                top: 13.5rem;
+                right: .1rem;
+            }
+
+            .numeral_4 {
+                transform: rotate(120deg);
+                position: absolute;
+                right: 2rem;
+                top: 20rem;
+            }
+
+            .numeral_5 {
+                transform: rotate(150deg);
+                position: absolute;
+                right: 7rem;
+                top: 25rem;
+            }
+
+            .numeral_6 {
+                transform: rotate(180deg);
+                position: absolute;
+                top: 27rem;
+                right: 13.5rem;
+            }
+
+            .numeral_7 {
+                transform: rotate(210deg);
+                position: absolute;
+                top: 25rem;
+                right: 20.5rem;
+            }
+
+            .numeral_8 {
+                transform: rotate(240deg);
+                position: absolute;
+                top: 20rem;
+                right: 25rem;
+            }
+
+            .numeral_9 {
+                transform: rotate(270deg);
+                position: absolute;
+                top: 13.5rem;
+                right: 27rem;
+            }
+
+            .numeral_10 {
+                transform: rotate(300deg);
+                position: absolute;
+                right: 25rem;
+                top: 7rem;
+            }
+
+            .numeral_11 {
+                transform: rotate(330deg);
+                position: absolute;
+                right: 20.5rem;
+                top: 2rem;
+            }
+
+            .numeral_12 {
+                position: absolute;
+                right: 13.5rem;
+            }
+        </style>
+
+        <script>
+            const minuteHand = document.querySelector('.min-hand');
+            const hourHand = document.querySelector('.hour-hand');
+            const note1 = document.querySelector('audio[data-key="1"]');
+            const note2 = document.querySelector('audio[data-key="2"]');
+            const note3 = document.querySelector('audio[data-key="3"]');
+            const note4 = document.querySelector('audio[data-key="4"]');
+            const whistle = document.querySelector('audio[data-key="5"]');
+            var need_to_play_quarter = true;
+
+            function playWestminsterQuarters(hours) {
+                setTimeout(function() {
+                    note1.play()
+                }, 1000);
+                setTimeout(function() {
+                    note2.play()
+                }, 2000);
+                setTimeout(function() {
+                    note3.play()
+                }, 3000);
+                setTimeout(function() {
+                    note4.play()
+                }, 4000);
+                setTimeout(function() {
+                    note4.play()
+                }, 6000);
+                setTimeout(function() {
+                    note3.play()
+                }, 7000);
+                setTimeout(function() {
+                    note1.play()
+                }, 8000);
+                setTimeout(function() {
+                    note2.play()
+                }, 9000);
+                if (hours) {
+                    setTimeout(playWhistles.bind(null, hours), 10000);
+                }
+            }
+
+            function playWhistle() {
+                whistle.play();
+            }
+
+            function playWhistles(times) {
+                for (i = 0; i < times; i++) {
+                    setTimeout(playWhistle, 5000 * (i + 1));
+                }
+            }
+
+            function checkMinutes(minutes, hours) {
+                var pass_hours = null;
+                switch (minutes) {
+                    case 0:
+                        pass_hours = hours;
+                    case 15:
+                    case 30:
+                    case 45:
+                        if (need_to_play_quarter) {
+                            need_to_play_quarter = false;
+                            playWestminsterQuarters(pass_hours);
+                        }
+                        break;
+                    default:
+                        need_to_play_quarter = true;
+                }
+            }
+
+            function setDate() {
+                const now = new Date();
+                const minutes = now.getMinutes();
+                var hours = now.getHours();
+                if (hours > 12) {
+                    hours -= 12;
+                }
+                const minutesDegrees = ((minutes / 60) * 360) + 90;
+                const hoursDegrees = ((hours / 12) * 360) + 90;
+                minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+                hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+                checkMinutes(minutes, hours);
+            }
+
+            setInterval(setDate, 1000);
+        </script>
+    </body>
+
+</html>
