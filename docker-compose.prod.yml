@@ -1,10 +1,7 @@
 blog:
   build: frontend/.
   container_name: blog_frontend
-  dockerfile: Dockerfile
   command: bash -c "npm run compile && nginx -g 'daemon off;'"
-  environment:
-    NODE_ENV: production
   ports:
     - '80:80'
   tty: true
@@ -13,7 +10,5 @@ api:
   build: backend/.
   container_name: blog_api
   command: node api.js
-  environment:
-    NODE_ENV: production
   ports:
     - '1234:1234'
