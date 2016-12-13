@@ -20,4 +20,4 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 
 COPY . /usr/src
 
-EXPOSE 3000
+EXPOSE 3000 80
