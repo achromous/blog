@@ -6,6 +6,18 @@ var app = express();
 
 var post = [];
 
+function compareposts(a, b) {
+  a_date = new Date(a.date);
+  b_date = new Date(b.date);
+  if(a_date < b_date) {
+    return 1;
+  }
+  if(a_date == b_date) {
+    return 0;
+  }
+  return -1;
+}
+
 app.use(cors())
 
 app.get('/', function(req, res, next) {
@@ -13,7 +25,7 @@ app.get('/', function(req, res, next) {
     //res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
     //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log('got a request');
-    res.send(post);
+    res.send(post.sort(compareposts));
 })
 
 app.listen(1234, function() {
@@ -33,5 +45,6 @@ app.listen(1234, function() {
                 post.push(to_save);
             });
         }
+
     });
 })
