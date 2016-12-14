@@ -5,7 +5,7 @@ tags:
 - docker
 - windows
 - blog
-title: First Post
+title: Devopsing so hard
 ---
 I have a surface pro 4. I know that if I want to be a proper developer I am
 supposed to use a mac or run linux, but dang is the surface nice. However I have
