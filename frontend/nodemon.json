@@ -2,7 +2,7 @@
   "watch": [
     "/usr/src"
   ],
-  "ext": ".ts",
+  "ext": "ts css",
   "ignore": [
     ".js"
   ],

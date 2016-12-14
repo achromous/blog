@@ -6,7 +6,7 @@ blog:
     - '80:80'
     - '3000:3000'
   volumes:
-    - frontend/.:/usr/src
+    - ./frontend:/usr/src
     - /usr/src/node_modules
 api:
   build: backend/.
@@ -15,4 +15,5 @@ api:
   ports:
     - '1234:1234'
   volumes:
-    - backend/.:/usr/src
+    - ./backend:/usr/src
+    - /usr/src/node_modules
