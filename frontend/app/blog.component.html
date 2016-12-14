@@ -1,9 +1,14 @@
-<h5>Recent Entries</h5>
-<hr>
-<div class="grid grid-pad">
-  
-    <div *ngFor="let post of posts">
-        <post [post]="post"></post>
+<div class="blog-wrapper">
+    <h5>Recent Entries</h5>
+    <hr>
+    <div class="blog-container">
+        <div posts-wrapper>
+            <div *ngFor="let post of posts">
+                <post [post]="post"></post>
+            </div>
+        </div>
+        <div class="tag-cloud">
+            Tag cloud will go here
+        </div>
     </div>
-
 </div>

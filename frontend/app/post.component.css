@@ -1,15 +1,32 @@
+.post-wrapper {
+flex-basis: 60vw;
+width: 60vw;
+display: flex;
+flex-wrap: warp;
+}
+
 h1 {
     font-size: 1.2em;
     color: #999;
     margin-bottom: 0;
 }
 
-.blog_post {
+.blog-post {
     margin-bottom: 5rem;
+    flex-basis:80%;
+    padding: 1vw;
+}
+
+.blog-details {
+  flex-basis: 20%;
+  padding: 1vw;
 }
 
 hr {
     border-color: #999999;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
 }

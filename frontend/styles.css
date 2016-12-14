@@ -2,10 +2,11 @@ a {
     font-weight: bold;
     margin-left: 3rem;
     text-decoration: none;
+    flex-basis: 1 1 8vw;
 }
 
 a:visited {
-    color: grey;
+    color: #212121;
 }
 
 body {

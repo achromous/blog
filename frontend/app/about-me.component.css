@@ -1,3 +1,8 @@
 a {
   text-decoration: none;
 }
+
+.row {
+  width: 80vh;
+  flex-basis: 80vh;
+}
