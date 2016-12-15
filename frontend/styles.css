@@ -1,14 +1,32 @@
+:root {
+   --font-color: #212121;
+   --secondary-color: #999999;
+   --highlight-color: thistle;
+}
+
 a {
     font-weight: bold;
     margin-left: 3rem;
     text-decoration: none;
     flex-basis: 1 1 8vw;
+    color: var(--font-color);
 }
 
 a:visited {
-    color: #212121;
+    color: var(--font-color);
 }
 
 body {
-    color: #212121
+    color: var(--font-color);
+    font-family: Futura, Tahoma, sans-serif;
+}
+
+hr {
+    background-color: var(--highlight-color);
+    color: var(--highlight-color);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    height: 1px;
+    width: 80vw;
 }
