@@ -1,13 +1,15 @@
-<div class="blog-wrapper">
-    <h5>Recent Entries</h5>
-    <hr>
-    <div class="blog-container">
-        <div posts-wrapper>
+<div>
+    <div class="Grid-cell">
+        <h5>Recent Entries</h5>
+    </div>
+    <div class="Grid">
+
+        <div class="Grid-cell">
             <div *ngFor="let post of posts">
                 <post [post]="post"></post>
             </div>
         </div>
-        <div class="tag-cloud">
+        <div class="Grid-cell u-1of4">
             Tag cloud will go here
         </div>
     </div>

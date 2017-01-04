@@ -1,12 +1,23 @@
 <div class="container">
-    <nav>
-        <a routerLink="/about_me" routerLinkActive="active">About Me</a>
-        <a routerLink="/blog" routerLinkActive="active">Blog</a>
+    <nav class="Grid Grid--1of8">
+        <div class="Grid-cell">
+            <a routerLink="/about_me" routerLinkActive="active">About Me</a>
+        </div>
+        <div class="Grid-cell">
+            <a routerLink="/blog" routerLinkActive="active">Blog</a>
+        </div>
     </nav>
-    <hr>
-    <h1>{{title}}</h1>
-    <hr>
-    <div class="container">
+    <div class="Grid">
+        <div class="Grid-cell u-1of8">
+            <div>
+                &nbsp;
+            </div>
+        </div>
+        <div class="Grid-cell">
+            <h1>{{title}}</h1>
+        </div>
+    </div>
+    <div>
         <router-outlet></router-outlet>
     </div>
 </div>

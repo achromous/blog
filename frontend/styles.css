@@ -1,3 +1,7 @@
+
+
+
+
 :root {
    --font-color: #212121;
    --secondary-color: #999999;
@@ -6,7 +10,6 @@
 
 a {
     font-weight: bold;
-    margin-left: 3rem;
     text-decoration: none;
     flex-basis: 1 1 8vw;
     color: var(--font-color);
@@ -16,9 +19,19 @@ a:visited {
     color: var(--font-color);
 }
 
+p {
+  margin-top: 0;
+}
+
 body {
     color: var(--font-color);
-    font-family: Futura, Tahoma, sans-serif;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: calc(0.7em + 1vw);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--secondary-color);
+  font-style: semi-bold;
 }
 
 hr {
@@ -29,4 +42,110 @@ hr {
     border: none;
     height: 1px;
     width: 80vw;
+}
+
+.Grid {
+  display: flex;
+}
+
+.Grid-cell {
+  flex: 1;
+}
+
+/* Alignment per row */
+.Grid--top {
+  align-items: flex-start;
+}
+.Grid--bottom {
+  align-items: flex-end;
+}
+.Grid--center {
+  align-items: center;
+}
+
+/* Alignment per cell */
+.Grid-cell--top {
+  align-self: flex-start;
+}
+.Grid-cell--bottom {
+  align-self: flex-end;
+}
+.Grid-cell--center {
+  align-self: center;
+}
+
+/* Base classes for all media */
+.Grid--fit > .Grid-cell {
+  flex: 1;
+}
+.Grid--full > .Grid-cell {
+  flex: 0 0 100%;
+}
+.Grid--1of2 > .Grid-cell {
+  flex: 0 0 50%
+}
+.Grid--1of3 > .Grid-cell {
+  flex: 0 0 33.3333%
+}
+.Grid--1of4 > .Grid-cell {
+  flex: 0 0 25%
+}
+.Grid--1of8 > .Grid-cell {
+  flex: 0 0 12.5555%
+}
+
+/* Small to medium screens */
+@media (min-width: 24em) {
+  .small-Grid--fit > .Grid-cell {
+    flex: 1;
+  }
+  .small-Grid--full > .Grid-cell {
+    flex: 0 0 100%;
+  }
+  .small-Grid--1of2 > .Grid-cell {
+    flex: 0 0 50%
+  }
+  .small-Grid--1of3 > .Grid-cell {
+    flex: 0 0 33.3333%
+  }
+  .small-Grid--1of4 > .Grid-cell {
+    flex: 0 0 25%
+  }
+}
+
+/* Large screens */
+@media (min-width: 48em) {
+  .large-Grid--fit > .Grid-cell {
+    flex: 1;
+  }
+  .large-Grid--full > .Grid-cell {
+    flex: 0 0 100%;
+  }
+  .large-Grid--1of2 > .Grid-cell {
+    flex: 0 0 50%
+  }
+  .large-Grid--1of3 > .Grid-cell {
+    flex: 0 0 33.3333%
+  }
+  .large-Grid--1of4 > .Grid-cell {
+    flex: 0 0 25%
+  }
+  .large-Grid--1of8 > .Grid-cell {
+    flex: 0 0 12.5555%
+  }
+}
+
+.u-1of8 {
+  width: 12.5555% !important;
+  flex: none !important;
+}
+
+.u-1of4 {
+  width: 25% !important;
+  flex: none !important;
+}
+
+.quarter {
+  width: 25vw;
+  flex: none;
 }
